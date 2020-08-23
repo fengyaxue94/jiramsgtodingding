@@ -1,5 +1,4 @@
-import time
-import requests
+#coding=UTF-8
 import json
 import base64
 import hashlib
@@ -8,7 +7,6 @@ import time
 import urllib
 from jira import JIRA
 import datetime
-import dingdingmsg
 import requests
 class JiraParse:
     # 初始化，获取jira的服务器地址信息，登录名、密码
