@@ -81,10 +81,7 @@ class JiraParse:
             # 3、self.get_issues(self.closed_jql.format(project=self.project, today=today, tomorrow=tomorrow),issue_dict)
             # 查询每个项目的所有业务反馈需求
             for a,b in enumerate(self.issuecustomer_all_jql):
-                print(str(b))
-                sum[a] = self.get_issues(str(b),issue_dict)
-            print(sum[a])
-            #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
+                sum_customer_all = self.get_issues(str(b), issue_dict)
             #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
             # 查询每个项目中状态=方案todo的业务需求
             sum_customer_schemetodo = self.get_issues(self.issuecustomer_schemetodo_jql, issue_dict)

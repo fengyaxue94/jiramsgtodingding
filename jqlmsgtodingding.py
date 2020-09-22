@@ -5,6 +5,7 @@ import hashlib
 import hmac
 import time
 import urllib
+import jira
 from jira import JIRA
 import datetime
 import requests
@@ -17,18 +18,18 @@ class JiraParse:
         self.server = server
         self.project = project
         # 查询所有未关闭，未交付解决的业务需求
-        self.issuenoslove_jql = 'project = YW AND issuetype = 业务需求 AND status in (草稿, 已排期, 待排期, "方案 todo", "产品 todo")'
+        self.issuenoslove_jql = 'project = YW AND issuetype = 业务需求 AND status in (草稿, 已排期, 待排期, "方案todo", "需求todo")'
         # 查询所有已关闭的需求
         self.closed_jql = 'project = YW AND issuetype = 业务需求 AND status in (关闭, 已交付)'
         # 查询业务需求项目中7天内，产品未排期处理的任务
-        self.untreated_jql = 'project = YW AND issuetype = 业务需求 AND status in (待排期, "产品 todo") AND  updated <= -7d ORDER BY updated DESC'
+        self.untreated_jql = 'project = YW AND issuetype = 业务需求 AND status in (待排期, "需求todo") AND  updated <= -7d ORDER BY updated DESC'
         #'project = {project} AND issuetype = 业务需求 AND resolved >= {today} AND resolved <= {tomorrow}'
         # 1天内新创建的问题
         # self.created_jql = 'project = YW AND issuetype = 业务需求 AND created >= {today}  AND created <= {tomorrow}'
         # 7天内，未排期处理的P0级需求
-        self.urgent7_jql = 'project = YW AND issuetype = 业务需求 AND status in (草稿, 待排期, "产品 todo") AND priority = 紧急 AND created >= -7d'
+        self.urgent7_jql = 'project = YW AND issuetype = 业务需求 AND status in (草稿, 待排期, "需求todo") AND priority = 紧急 AND created >= -7d'
         # 15天内，未排期处理的P1级需求
-        self.high15_jql = 'project = YW AND status in (草稿, 待排期, "产品 todo") AND priority = 高  AND issuetype = 业务需求 AND created >= -15d'
+        self.high15_jql = 'project = YW AND status in (草稿, 待排期, "需求todo") AND priority = 高  AND issuetype = 业务需求 AND created >= -15d'
         self.max_results = max_results
         self.jira_object = JIRA(server=self.server, basic_auth=(self.name, self.password), options={'verify': False})
 

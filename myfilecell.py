@@ -18,31 +18,47 @@ class JiraParse:
         self.server = server
         self.project = project
         # customer代表不同的租户：链家、智联、OPPO、一汽、三一、上海电气、中南、中烟、九阳、保时捷、大疆、德邦、智联、歌尔声学、河北烟草、浙交投、猿辅导、美团、花生好车、长城
-        customers = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers1 = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers2 = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers3 = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers4 = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers5 = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
         # 根据租户不同查询各个项目的需求处理状态统计情况
         # 定义各个查询语句变量
         # 查询每个项目的所有业务反馈需求数量
-        self.issuecustomer_all_jql = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issuecustomer_all_jql = []
         # 查询每个项目中状态=方案todo的业务需求数量
-        self.issuecustomer_schemetodo_jql  = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issuecustomer_schemetodo_jql  = []
         # 查询每个项目中状态=产品todo的业务需求数量
-        self.issuecustomer_producttodo_jql = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issuecustomer_producttodo_jql = []
         # 查询每个项目中状态=待排期的业务需求数量
-        self.issuecustomer_waittinglist_jql = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issuecustomer_waittinglist_jql = []
         # 查询每个项目中状态=已排期的业务需求数量
-        self.issuecustomer_scheduledlist_jql = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issuecustomer_scheduledlist_jql = []
         # 通过for循环赋值查询获取各个业务状态下的每个项目的issue查询结果
-        for i,j in enumerate(customers):
-            self.issuecustomer_all_jql[i] = 'project = YW AND issuetype = 业务需求 AND 关联客户 = '+str(j)+' ORDER BY updated DESC'
-            # 获取各个项目业务状态=方案todo的需求情况
-            self.issuecustomer_schemetodo_jql[i] ='project = YW AND issuetype = 业务需求 AND status = "方案 todo" AND 关联客户 = ' + str(j) + ' ORDER BY updated DESC'
-            # 获取各个项目业务状态=产品todo的需求情况
-            self.issuecustomer_producttodo_jql[i] = 'project = YW AND issuetype = 业务需求 AND status = "产品 todo" AND 关联客户 = ' + str(j) + ' ORDER BY updated DESC'
-            # 获取各个项目业务状态=待排期的需求情况
-            self.issuecustomer_waittinglist_jql[i] ='project = YW AND issuetype = 业务需求 AND status = 待排期 AND 关联客户 = ' + str(j) + ' ORDER BY updated DESC'
-            # 获取各个项目业务状态=已排期的需求情况
-            self.issuecustomer_scheduledlist_jql[i]  = 'project = YW AND issuetype = 业务需求 AND status = 已排期 AND 关联客户 = ' + str(j) + ' ORDER BY updated DESC'
+        for a,b in enumerate(customers1):
+            customers1[a] = 'project = YW AND issuetype = 业务需求 AND 关联客户 = '+str(b)+' ORDER BY updated DESC'
+            self.issuecustomer_all_jql.append(customers1[a])
+        print(self.issuecustomer_all_jql)
+        # 获取各个项目业务状态=方案todo的需求情况
+        for c,d in enumerate(customers2):
+            customers2[c] = 'project = YW AND issuetype = 业务需求 AND status = "方案 todo" AND 关联客户 = ' + str(d) + ' ORDER BY updated DESC'
+            self.issuecustomer_schemetodo_jql.append(customers2[c])
+        print(self.issuecustomer_schemetodo_jql)
+        # 获取各个项目业务状态=产品todo的需求情况
+        for e, f in enumerate(customers3):
+            customers3[e] = 'project = YW AND issuetype = 业务需求 AND status = "产品 todo" AND 关联客户 = ' + str(f) + ' ORDER BY updated DESC'
+            self.issuecustomer_producttodo_jql.append(customers3[e])
         print(self.issuecustomer_producttodo_jql)
+        # 获取各个项目业务状态=待排期的需求情况
+        for g, h in enumerate(customers4):
+            customers4[g] ='project = YW AND issuetype = 业务需求 AND status = 待排期 AND 关联客户 = ' + str(h) + ' ORDER BY updated DESC'
+            self.issuecustomer_waittinglist_jql.append(customers4[g])
+        print(self.issuecustomer_waittinglist_jql)
+        # 获取各个项目业务状态=已排期的需求情况
+        for i, j in enumerate(customers5):
+            customers5[i] = 'project = YW AND issuetype = 业务需求 AND status = 已排期 AND 关联客户 = ' + str(j) + ' ORDER BY updated DESC'
+            self.issuecustomer_scheduledlist_jql.append(customers5[i])
         print(self.issuecustomer_scheduledlist_jql)
         self.max_results = max_results
         self.jira_object = JIRA(server=self.server, basic_auth=(self.name, self.password),options={'verify': False})
@@ -80,12 +96,11 @@ class JiraParse:
             # 2、self.get_issues(self.created_jql.format(project=self.project, today=today, tomorrow=tomorrow),issue_dict)
             # 3、self.get_issues(self.closed_jql.format(project=self.project, today=today, tomorrow=tomorrow),issue_dict)
             # 查询每个项目的所有业务反馈需求
-            for a,b in enumerate(self.issuecustomer_all_jql):
-                print(str(b))
-                sum[a] = self.get_issues(str(b),issue_dict)
-            print(sum[a])
             #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
-            #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
+            for i,j in range(len(self.issuecustomer_all_jql)):
+                sum_customer_all = self.get_issues(self.issuecustomer_all_jql[j], issue_dict)
+            print(sum_customer_all)
+
             # 查询每个项目中状态=方案todo的业务需求
             sum_customer_schemetodo = self.get_issues(self.issuecustomer_schemetodo_jql, issue_dict)
             # 查询每个项目中状态=产品todo的业务需求
