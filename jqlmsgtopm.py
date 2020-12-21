@@ -18,11 +18,23 @@ class JiraParse:
         self.server = server
         self.project = project
         # customer代表不同的租户：链家、智联、OPPO、一汽、三一、上海电气、中南、中烟、九阳、保时捷、大疆、德邦、智联、歌尔声学、河北烟草、浙交投、猿辅导、美团、花生好车、长城
-        customers = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        customers = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城','迈瑞']
         # 根据租户不同查询各个项目的需求处理状态统计情况
         # 定义各个查询语句变量
         # 查询每个项目的所有业务反馈需求数量
-        self.issuecustomer_all_jql = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
+        self.issue_lianjia_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_zhilian_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_oppo_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_yiqi_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_sanyi_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_shanghaidianqi_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_zhongnan_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_zhongyan_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_jiuyang_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_baoshijie_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_dajiang_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_debang_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
+        self.issue_geershengxue_all_jql = 'project = YW AND issuetype = 业务需求 AND 关联客户 = 链家 ORDER BY updated DESC'
         # 查询每个项目中状态=方案todo的业务需求数量
         self.issuecustomer_schemetodo_jql  = ['链家','智联','OPPO','一汽','三一','上海电气','中南','中烟','九阳','保时捷','大疆','德邦','智联','歌尔声学','河北烟草','浙交投','猿辅导','美团','花生好车','长城']
         # 查询每个项目中状态=产品todo的业务需求数量
@@ -80,12 +92,7 @@ class JiraParse:
             # 2、self.get_issues(self.created_jql.format(project=self.project, today=today, tomorrow=tomorrow),issue_dict)
             # 3、self.get_issues(self.closed_jql.format(project=self.project, today=today, tomorrow=tomorrow),issue_dict)
             # 查询每个项目的所有业务反馈需求
-            for a,b in enumerate(self.issuecustomer_all_jql):
-                print(str(b))
-                sum[a] = self.get_issues(str(b),issue_dict)
-            print(sum[a])
-            #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
-            #sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
+            sum_customer_all = self.get_issues(self.issuecustomer_all_jql, issue_dict)
             # 查询每个项目中状态=方案todo的业务需求
             sum_customer_schemetodo = self.get_issues(self.issuecustomer_schemetodo_jql, issue_dict)
             # 查询每个项目中状态=产品todo的业务需求
